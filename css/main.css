@@ -1,0 +1,450 @@
+.content {
+    width: 70%;
+    margin: auto;
+    height: 100vh;
+    background-color: rgb(219, 219, 219);
+}
+
+.img_menu {
+    display: none;
+}
+
+/*Шапка с иконкой и кнопкой*/
+.header_ic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo_img {
+    width: 15%;
+    margin-left: 15px;
+}
+
+.bt_login {
+    width: 8%;
+    color: black;
+    background-color: none;
+    border: 2px solid yellow;
+    border-radius: 5px;
+    margin-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/*Шапка с меню*/
+.nav {
+    display: flex;
+}
+
+.nav li {
+    padding-left: 2%;
+}
+
+.left_cen {
+    display: flex;
+
+}
+
+/*Левое меню*/
+.sedebar_left {
+    width: 20%
+}
+
+.nav_left {
+    padding-top: 5px;
+    padding-left: 5%;
+}
+
+.nav_left li {
+    padding-top: 2%;
+}
+
+/*Карточки товаров*/
+.comp_content {
+    position: fixed;
+    width: 58%;
+    bottom: 45px;
+    top: 15%;
+    right: 15%;
+    overflow: auto;
+
+}
+
+.all_content {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+.sidebar_modal {
+    margin: auto;
+    padding-top: 15px;
+    width: 30%;
+    height: 100%;
+}
+
+.pc_content {
+    font-size: 14px;
+}
+
+.set_pc {
+    display: flex;
+}
+
+.pc_price {
+    width: 60%;
+}
+
+.pc_cn {
+    width: 15%;
+    text-align: right;
+    border: 1px solid blue;
+}
+
+.pc_cn:focus {
+    border: 1px solid blue;
+}
+
+.bt_pc {
+    background-color: blue;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 2px;
+}
+
+.Copyright {
+    margin-right: 15px;
+}
+
+/*Кнопка плавающая*/
+.bt_in_bot {
+    width: 300px;
+    position: fixed;
+    bottom: 45px;
+    right: 25%;
+    padding: 5px 5px 5px 5px;
+    color: black;
+    cursor: pointer;
+    display: block;
+    background-color: coral;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    z-index: 99999;
+}
+
+.md_chat {
+    position: fixed;
+    bottom: 80px;
+    right: 25%;
+    text-align: center;
+    max-width: 300px;
+    background-color: rgb(184, 184, 184);
+}
+
+.md_chat textarea {
+    width: 70%;
+    height: 200px;
+}
+
+.bt_chat {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: blue;
+}
+
+/*Анимация на ссылки*/
+a {
+    text-decoration: none;
+    color: #0f7afc;
+    border-bottom: 2px solid;
+    border-bottom-color: rgba(15, 122, 252, 0.2);
+    transition: 0.7s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #cf0000;
+    border-bottom-color: rgba(208, 64, 0, 1);
+    transition: 0.7s;
+}
+
+
+/*Анимация на кнопки*/
+.bt_in_bot:hover {
+    color: #000 !important;
+    background-color: rgb(255, 179, 80);
+    text-shadow: none;
+}
+
+
+
+/*Низ*/
+.foot_er {
+    position: absolute;
+    width: 70%;
+    bottom: 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav_bot {
+    display: flex;
+}
+
+.nav_bot li {
+    white-space: nowrap;
+    padding-left: 5%;
+}
+
+.email_by_t {
+    margin-left: 5%;
+}
+
+.in_email {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 2px 10px 3px 5px;
+}
+
+.bt_email {
+    color: black;
+    font-size: 25px;
+    background-color: none;
+    border: 2px solid yellow;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 2px;
+}
+
+@media screen and (max-width:1024px) {
+    .content {
+        font-size: 18px;
+        width: 80%;
+        margin: auto;
+        height: 100vh;
+        background-color: rgb(219, 219, 219);
+    }
+
+    .sedebar_left {
+        width: 30%
+    }
+
+    .comp_content {
+        position: fixed;
+        width: 65%;
+        bottom: 65px;
+        top: 85px;
+        right: 10%;
+        overflow: auto;
+
+    }
+
+    .sidebar_modal {
+        padding-top: 15px;
+        padding-left: 15px;
+        width: 50%;
+        height: 100%;
+    }
+
+    .bt_in_bot {
+        width: 280px;
+        position: fixed;
+        bottom: 65px;
+        right: 25%;
+        padding: 5px 5px 5px 5px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        background-color: coral;
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+        z-index: 99999;
+    }
+
+    .logo_img {
+        width: 12%;
+        margin-left: 15px;
+    }
+
+    .foot_er {
+        position: absolute;
+        width: 80%;
+        bottom: 0;
+        height: 65px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .email_by_t {
+        margin-left: 12%;
+    }
+
+    .Copyright {
+        width: 40%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .md_chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25%;
+        text-align: center;
+        max-width: 280px;
+        background-color: rgb(184, 184, 184);
+    }
+}
+
+@media screen and (max-width:576px) {
+    .content {
+        font-size: 16px;
+        width: 100%;
+        background-color: rgb(219, 219, 219);
+    }
+
+    .img_menu {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .nav_left {
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+
+    .left_cen {
+        display: block;
+    }
+
+    .header {
+        display: none;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .nav_bot {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .nav_bot li {
+        white-space: nowrap;
+    }
+
+    .sedebar_left {
+        width: 100%;
+        text-align: center;
+    }
+
+    .comp_content {
+        position: fixed;
+        width: 100%;
+        bottom: 85px;
+        top: 18%;
+        right: 0px;
+        overflow: auto;
+    }
+
+    .comp_content::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .sidebar_modal {
+        width: 90%;
+        height: 100%;
+        padding-left: 0px;
+    }
+
+    .bt_in_bot {
+        width: 250px;
+        position: fixed;
+        bottom: 84px;
+        right: 28%;
+        padding: 5px 5px 5px 5px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        background-color: coral;
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+        z-index: 99999;
+    }
+
+    .logo_img {
+        width: 12%;
+        margin-left: 15px;
+    }
+
+    .foot_er {
+        width: 100%;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+
+    .email_by_t {
+        width: 100%;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .Copyright {
+        width: 40%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .md_chat {
+        position: fixed;
+        bottom: 120px;
+        right: 28%;
+        text-align: center;
+        max-width: 250px;
+        background-color: rgb(184, 184, 184);
+    }
+
+    a {
+        text-decoration: none;
+        color: #0f7afc;
+        border-bottom: 0px solid;
+        border-bottom-color: rgba(15, 122, 252, 0.2);
+        transition: 0.7s;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #cf0000;
+        border-bottom-color: rgba(208, 64, 0, 1);
+        transition: 0.7s;
+    }
+    .pc_price {
+        width: 60%;
+    }
+    
+    .pc_cn {
+        width: 10%;
+        text-align: right;
+        border: 1px solid blue;
+    }
+    
+    .pc_cn:focus {
+        border: 1px solid blue;
+    }
+    
+    .bt_pc {
+        width: 25%;
+        background-color: blue;
+        border-radius: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 2px;
+    }
+    
+}
