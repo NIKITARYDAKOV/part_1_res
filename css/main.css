@@ -14,16 +14,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+padding-top: 15px;
 
 }
 
 .logo_img {
-    width: 15%;
+    width: 150px;
+    height: 90px;
     margin-left: 15px;
 }
 
 .bt_login {
-    width: 8%;
+    width: 100px;
+    
     color: black;
     background-color: none;
     border: 2px solid yellow;
@@ -73,15 +76,20 @@
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .sidebar_modal {
     margin: auto;
-    padding-top: 15px;
+    padding-top: 5px;
+    margin-top: 20px;
     width: 30%;
     height: 100%;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    background-color: #b6b5b5;
 }
+
 
 .pc_content {
     font-size: 14px;
@@ -139,6 +147,7 @@
     text-align: center;
     max-width: 300px;
     background-color: rgb(184, 184, 184);
+    z-index: 9990;
 }
 
 .md_chat textarea {
@@ -161,7 +170,6 @@ a {
     border-bottom-color: rgba(15, 122, 252, 0.2);
     transition: 0.7s;
 }
-
 a:hover {
     text-decoration: none;
     color: #cf0000;
@@ -176,7 +184,15 @@ a:hover {
     background-color: rgb(255, 179, 80);
     text-shadow: none;
 }
-
+button:hover{
+    background-color: #0f7afc;
+}
+.bt_login:hover {
+    background-color: yellow;
+}
+.bt_email:hover {
+background-color: yellow;
+}
 
 
 /*Низ*/
@@ -261,12 +277,25 @@ a:hover {
         justify-content: space-between;
         flex-wrap: wrap;
     }
+    .bt_in_bot {
+        width: 300px;
+        position: fixed;
+        bottom: 45px;
+        right: 25%;
+        padding: 5px 5px 5px 5px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        background-color: coral;
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+        z-index: 99999;
+    }
 }
 
 @media screen and (max-width:1024px) {
     .content {
         font-size: 17px;
-        width: 90%;
+        width: 100%;
         margin: auto;
         height: 100vh;
         background-color: rgb(219, 219, 219);
@@ -276,22 +305,21 @@ a:hover {
         width: 30%
     }
 
-    .adaptiv {
-        padding-bottom: 20px;
-    }
-
     .comp_content {
         width: 100%;
-        height: calc(100vh - 155px);
+        height: calc(100vh - 175px);
         overflow: auto;
-
     }
 
     .sidebar_modal {
-        padding-top: 15px;
-        padding-left: 15px;
-        width: 50%;
+        padding-top: 5px;
+        margin: auto;
+        margin-top: 20px;
+        width: 48%;
         height: 100%;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        background-color: #b6b5b5;
     }
 
     .bt_in_bot {
@@ -309,40 +337,85 @@ a:hover {
     }
 
     .logo_img {
-        width: 12%;
+        width: 150px;
+        height: 60px;
         margin-left: 15px;
     }
 
     .foot_er {
-        position: absolute;
-        width: 89%;
+        width: 100%;
         bottom: 0;
-        height: 65px;
+        height: auto;
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
     }
-
+.nav_bot{
+    width: 51%;
+}
     .email_by_t {
        margin-left: 0px;
     }
 
     .Copyright {
-        width: 40%;
-        margin: auto;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
     }
 
     .md_chat {
         position: fixed;
         bottom: 100px;
-        right: 25%;
+        right: 20%;
         text-align: center;
         max-width: 280px;
         background-color: rgb(184, 184, 184);
     }
 }
-
+@media screen and (max-width:650px) {
+    .foot_er {
+        width: 100%;
+        bottom: 0;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .comp_content {
+        width: 100%;
+        height: calc(100vh - 195px);
+        overflow: auto;
+    }
+    .bt_in_bot {
+        width: 280px;
+        position: fixed;
+        bottom: 92px;
+        right: 15%;
+        padding: 5px 5px 5px 5px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        background-color: coral;
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+        z-index: 99999;
+    }
+    .md_chat {
+        position: fixed;
+        bottom: 100px;
+        right: 15%;
+        text-align: center;
+        max-width: 280px;
+        background-color: rgb(184, 184, 184);
+    }
+    .email_by_t {
+       padding-top: 5px;
+     }
+     .nav_bot{
+         width: 57%;
+     }
+}
 @media screen and (max-width:576px) {
     .content {
         font-size: 16px;
@@ -389,7 +462,7 @@ a:hover {
 
     .comp_content {
         width: 100%;
-        height: calc(100vh - 256px);
+        height: calc(100vh - 266px);
         overflow: auto;
 
     }
@@ -407,7 +480,7 @@ a:hover {
     .bt_in_bot {
         width: 250px;
         position: fixed;
-        bottom: 84px;
+        bottom: 94px;
         right: 28%;
         padding: 5px 5px 5px 5px;
         color: black;
@@ -425,7 +498,6 @@ a:hover {
 
     .foot_er {
         width: 100%;
-        margin-bottom: 20px;
         justify-content: center;
     }
 
