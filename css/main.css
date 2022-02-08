@@ -72,54 +72,8 @@ padding-top: 15px;
 
 }
 
-.all_content {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    margin-bottom: 35px;
-}
-
-.sidebar_modal {
-    margin: auto;
-    padding-top: 5px;
-    margin-top: 20px;
-    width: 30%;
-    height: 100%;
-    border-radius: 10px;
-    padding-bottom: 10px;
-    background-color: #b6b5b5;
-}
 
 
-.pc_content {
-    font-size: 14px;
-}
-
-.set_pc {
-    display: flex;
-}
-
-.pc_price {
-    width: 60%;
-}
-
-.pc_cn {
-    width: 15%;
-    text-align: right;
-    border: 1px solid blue;
-}
-
-.pc_cn:focus {
-    border: 1px solid blue;
-}
-
-.bt_pc {
-    background-color: blue;
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: 2px;
-}
 
 .Copyright {
     margin-right: 15px;
@@ -311,16 +265,6 @@ background-color: yellow;
         overflow: auto;
     }
 
-    .sidebar_modal {
-        padding-top: 5px;
-        margin: auto;
-        margin-top: 20px;
-        width: 48%;
-        height: 100%;
-        border-radius: 10px;
-        padding-bottom: 10px;
-        background-color: #b6b5b5;
-    }
 
     .bt_in_bot {
         width: 280px;
@@ -471,11 +415,6 @@ background-color: yellow;
         width: 0;
     }
 
-    .sidebar_modal {
-        width: 90%;
-        height: 100%;
-        padding-left: 0px;
-    }
 
     .bt_in_bot {
         width: 250px;

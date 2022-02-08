@@ -3,18 +3,20 @@ class Pc {
         let html_catalog_pc = '';
         CATALOG.forEach(({ id, img, text, price }) => {
             html_catalog_pc += `
-            <img src="${img}">
-            <div class="pc_content">${text}</div>
-            <div>
-                <div class="pc_price">${price}</div>
-                <input type="text" placeholder="1">
-                <button>Купить</button>
+            <div class="pc_modal">
+            <img class="pc_modal_img" src="${img}">
+            <div class="pc_modal_text">${text}</div>
+            <div class="pc_modal_pib">
+                <div class="pc_modal_price">${price}</div>
+                <input class="pc_modal_input" type="text" placeholder="1">
+                <button class="pc_modal_button">Купить</button>
+        </div>
         </div>
             `;
         });
 
-        const html_pc =`
-        <div>
+        const html_pc = `
+        <div class="all_content_pc">
         ${html_catalog_pc}
         </div>
         `;
