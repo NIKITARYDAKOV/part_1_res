@@ -16,7 +16,7 @@ class Phone {
         });
 
         const html_phone = `
-        <div class="all_content_phone">
+        <div class="all_content_phone" id="all_content_phone" style="display: none">
         ${html_catalog_phone}
         </div>
         `;

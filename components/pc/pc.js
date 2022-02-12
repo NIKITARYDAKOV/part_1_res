@@ -16,7 +16,7 @@ class Pc {
         });
 
         const html_pc = `
-        <div class="all_content_pc">
+        <div class="all_content_pc" id="all_content_pc" style="display: flex">
         ${html_catalog_pc}
         </div>
         `;

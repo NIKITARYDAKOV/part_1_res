@@ -44,16 +44,16 @@
             <div class="sedebar_left">
                 <ul class="nav_left">
                     <li class="nav-itemleft">
-                        <a class="nav-link_pc" href="#">Ноутбуки</a>
+                        <a class="nav-link_pc" href="#" onclick="content_pc()" >Ноутбуки</a>
                     </li>
                     <li class="nav-itemleft">
-                        <a class="nav-link_phone" href="#">Телефоны</a>
+                        <a class="nav-link_phone" href="#" onclick="content_phone()" >Телефоны</a>
                     </li>
                     <li class="nav-itemleft">
-                        <a class="nav-link_back" href="#">Бытовая техника</a>
+                        <a class="nav-link_back" href="#" onclick="content_tehnic()">Бытовая техника</a>
                     </li>
                     <li class="nav-itemleft">
-                        <a class="nav-link_shop" href="#">Инструменты</a>
+                        <a class="nav-link_shop" href="#" onclick="content_instruments()" >Инструменты</a>
                     </li>
                 </ul>
             </div>
@@ -71,7 +71,43 @@
                                 <input class="pc_cn" type="text" placeholder="1">
                                 <button class="bt_pc">Купить</button>
                             </div>
-                        </div>  
+                        </div> 
+                        <div id="sidebar_modal2" class="sidebar_modal2">
+                            <img class="img_pc" src="../img/pc.png">
+                            <div class="pc_content">Windows 10 Домашняя 1366x768 Пикс 15.6" 1.1 ГГц Intel
+                                Celeron N4020
+                                4 ГБ
+                                DDR4 SSD 256 ГБ Intel UHD Graphics 600Серый</div>
+                            <div class="set_pc">
+                                <div class="pc_price">1399 Р</div>
+                                <input class="pc_cn" type="text" placeholder="1">
+                                <button class="bt_pc">Купить</button>
+                            </div>
+                        </div>   
+                        <div id="sidebar_modal3" class="sidebar_modal3">
+                            <img class="img_pc" src="../img/pc.png">
+                            <div class="pc_content">Windows 10 Домашняя 1366x768 Пикс 15.6" 1.1 ГГц Intel
+                                Celeron N4020
+                                4 ГБ
+                                DDR4 SSD 256 ГБ Intel UHD Graphics 600Серый</div>
+                            <div class="set_pc">
+                                <div class="pc_price">1399 Р</div>
+                                <input class="pc_cn" type="text" placeholder="1">
+                                <button class="bt_pc">Купить</button>
+                            </div>
+                        </div>   
+                        <div id="sidebar_modal4" class="sidebar_modal4">
+                            <img class="img_pc" src="../img/pc.png">
+                            <div class="pc_content">Windows 10 Домашняя 1366x768 Пикс 15.6" 1.1 ГГц Intel
+                                Celeron N4020
+                                4 ГБ
+                                DDR4 SSD 256 ГБ Intel UHD Graphics 600Серый</div>
+                            <div class="set_pc">
+                                <div class="pc_price">1399 Р</div>
+                                <input class="pc_cn" type="text" placeholder="1">
+                                <button class="bt_pc">Купить</button>
+                            </div>
+                        </div> 
                     </div>
                     <div class="sd_in_bot">
                         <div class="md_chat" id="md_chat" style=" opacity: 0; visibility: hidden; transition: linear; ">
@@ -144,7 +180,48 @@
                 document.getElementById('md_chat').style.opacity = '0';
             }
         }
+        function content_pc(){
+        let md = document.getElementById('all_content_pc');	
+            if(md.style.display=='none'){  
+                document.getElementById('all_content_pc').style.display = 'flex';
+                document.getElementById('all_content_tehnic').style.display = 'none';
+                document.getElementById('all_content_instruments').style.display = 'none';
+                document.getElementById('all_content_phone').style.display = 'none';    
+            }
+        }
+
+        function content_phone(){
+        let md = document.getElementById('all_content_phone');	
+            if(md.style.display=='none'){  
+                document.getElementById('all_content_pc').style.display = 'none';
+                document.getElementById('all_content_tehnic').style.display = 'none';
+                document.getElementById('all_content_instruments').style.display = 'none';
+                document.getElementById('all_content_phone').style.display = 'flex';    
+            }
+        }
+
+        function content_tehnic(){
+        let md = document.getElementById('all_content_tehnic');	
+            if(md.style.display=='none'){  
+                document.getElementById('all_content_pc').style.display = 'none';
+                document.getElementById('all_content_tehnic').style.display = 'flex';
+                document.getElementById('all_content_instruments').style.display = 'none';
+                document.getElementById('all_content_phone').style.display = 'none';    
+            }
+        }
+        function content_instruments(){
+        let md = document.getElementById('all_content_instruments');	
+            if(md.style.display=='none'){  
+                document.getElementById('all_content_pc').style.display = 'none';
+                document.getElementById('all_content_tehnic').style.display = 'none';
+                document.getElementById('all_content_instruments').style.display = 'flex';
+                document.getElementById('all_content_phone').style.display = 'none';    
+            }
+        }
+
+
     }
+
     
     </script>
 </body>
