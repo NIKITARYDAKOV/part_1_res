@@ -44,6 +44,13 @@ object-fit: contain;
     padding-right: 5px;
     margin-left: 2px;
 }
+.tehnic_modal_button_active{
+    background-color: red;
+}
+.tehnic_modal_button_active:hover{
+    background-color: rgba(252, 55, 55, 0.753);
+}
+
 @media screen and (max-width:1024px) {
     .tehnic_modal {
         margin: auto;

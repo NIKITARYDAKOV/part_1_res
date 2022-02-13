@@ -44,6 +44,14 @@ object-fit: contain;
     padding-right: 5px;
     margin-left: 2px;
 }
+.instruments_modal_button_active{
+    background-color: red;
+}
+.instruments_modal_button_active:hover{
+    background-color: rgba(252, 55, 55, 0.753);
+}
+
+
 @media screen and (max-width:1024px) {
     .instruments_modal {
         margin: auto;

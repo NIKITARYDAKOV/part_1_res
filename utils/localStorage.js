@@ -13,7 +13,7 @@ class LocalStorageUtil_pc {
     putPC(id) {
         let pc = this.getPC();
         let pushPC = false;
-        const index = pc.inexOf(id);
+        const index = pc.indexOf(id);
         if (index == -1) {
             pc.push(id);
             pushPC = true;
@@ -26,6 +26,9 @@ class LocalStorageUtil_pc {
         return { pushPC, pc }
     }
 }
+
+
+
 class LocalStorageUtil_phone {
     constructor() {
         this.keyName = 'phone';
@@ -41,7 +44,7 @@ class LocalStorageUtil_phone {
     putPhone(id) {
         let phone = this.getPhone();
         let push_phone = false;
-        const index = pc.inexOf(id);
+        const index = phone.indexOf(id);
         if (index == -1) {
             phone.push(id);
             push_phone = true;
@@ -54,6 +57,9 @@ class LocalStorageUtil_phone {
         return { push_phone, phone }
     }
 }
+
+
+
 class LocalStorageUtil_tehnic {
     constructor() {
         this.keyName = 'tehnic';
@@ -69,7 +75,7 @@ class LocalStorageUtil_tehnic {
     putTehnic(id) {
         let tehnic = this.getTehnic();
         let push_tehnic = false;
-        const index = pc.inexOf(id);
+        const index = tehnic.indexOf(id);
         if (index == -1) {
             tehnic.push(id);
             push_tehnic = true;
@@ -82,6 +88,9 @@ class LocalStorageUtil_tehnic {
         return { push_tehnic, tehnic }
     }
 }
+
+
+
 class LocalStorageUtil_instruments {
     constructor() {
         this.keyName = 'instruments';
@@ -89,7 +98,7 @@ class LocalStorageUtil_instruments {
     getInstruments() {
         const instrumentsLocalStorage = localStorage.getItem(this.keyName);
         if (instrumentsLocalStorage !== null) {
-            return JSON.parse(instrumentseLocalStorage);
+            return JSON.parse(instrumentsLocalStorage);
         }
         else
             return [];
@@ -97,7 +106,7 @@ class LocalStorageUtil_instruments {
     putInstruments(id) {
         let instruments = this.getInstruments();
         let push_instruments = false;
-        const index = pc.inexOf(id);
+        const index = instruments.indexOf(id);
         if (index == -1) {
             instruments.push(id);
             push_instruments = true;
@@ -116,4 +125,4 @@ class LocalStorageUtil_instruments {
 const localStorageUtil_PC = new LocalStorageUtil_pc();
 const localStorageUtil_PHONE = new LocalStorageUtil_phone();
 const localStorageUtil_TEHNIC = new LocalStorageUtil_tehnic();
-const localStorageUtil_INSSTRUMENTS = new LocalStorageUtil_instruments();
+const localStorageUtil_INSTRUMENTS = new LocalStorageUtil_instruments();

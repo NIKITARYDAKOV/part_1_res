@@ -1,3 +1,11 @@
 {
-    "workbench.colorTheme": "Monokai"
+    "workbench.colorTheme": "Solarized Dark",
+    "cSpell.words": [
+        "Главная",
+        "Купить",
+        "техника",
+        "Удалить",
+        "Часть",
+        "tehnic"
+    ]
 }

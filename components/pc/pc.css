@@ -43,6 +43,12 @@ object-fit: contain;
     padding-right: 5px;
     margin-left: 2px;
 }
+.pc_modal_button_active{
+    background-color: red;
+}
+.pc_modal_button_active:hover{
+    background-color: rgba(252, 55, 55, 0.753);
+}
 @media screen and (max-width:1024px) {
     .pc_modal {
         margin: auto;
