@@ -45,7 +45,7 @@ class Phone {
             <img class="phone_modal_img" src="${img}">
             <div class="phone_modal_text">${text}</div>
             <div class="phone_modal_pib">
-                <div class="phone_modal_price">${price}</div>
+                <div class="phone_modal_price">${price.toLocaleString()} Р</div>
                 <input class="phone_modal_input" type="text" placeholder="1">
                 <button class="phone_modal_button ${activeClass_phone}" onclick="phone_page.Set_storage_phone(this, '${id}');">${activeText_phone}</button>
         </div>

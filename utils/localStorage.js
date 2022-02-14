@@ -119,10 +119,38 @@ class LocalStorageUtil_instruments {
         return { push_instruments, instruments }
     }
 }
+class LocalStorageUtil_sell {
+    constructor() {
+        this.keyName = 'sell';
+    }
+    getSell() {
+        const sellLocalStorage = localStorage.getItem(this.keyName);
+        if (sellLocalStorage !== null) {
+            return JSON.parse(sellLocalStorage);
+        }
+        else
+            return [];
+    }
+    putSell(id) {
+        let sell = this.getSell();
+        let pushSell = false;
+        const index = sell.indexOf(id);
+        if (index == -1) {
+            sell.push(id);
+            pushSell = true;
+        }
+        else {
+            sell.splice(index, 1);
+        }
+        localStorage.setItem(this.keyName, JSON.stringify(pc));
 
+        return { pushSell, sell }
+    }
+}
 
 
 const localStorageUtil_PC = new LocalStorageUtil_pc();
 const localStorageUtil_PHONE = new LocalStorageUtil_phone();
 const localStorageUtil_TEHNIC = new LocalStorageUtil_tehnic();
 const localStorageUtil_INSTRUMENTS = new LocalStorageUtil_instruments();
+const LocalStorageUtil_SELL = new LocalStorageUtil_sell();

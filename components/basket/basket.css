@@ -1,0 +1,109 @@
+.all_content_basket{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+.all_content_basket_active{
+    display: none;
+}
+.basket_modal {
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 30%;
+    height: 420px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    background-color: #b6b5b5;
+}
+.activeClass_basket{
+    background-color: black;
+}
+.basket_modal_img{
+object-fit: contain;
+}
+.basket_modal_text{
+    text-align: center;
+    font-size: 14px;
+}
+.basket_modal_pib{
+    display: flex;
+justify-content: space-between;
+}
+.basket_modal_price{
+margin-left: 5px;
+}
+.basket_modal_pib_phone{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.basket_modal_button{
+    background-color: red;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+.basket_modal_button:hover{
+    background-color: rgba(252, 55, 55, 0.753);
+}
+.sell_basket{
+    display: flex;
+    justify-content: space-between;
+}
+.text_sum{
+    margin-left: 30px;
+}
+.bt_buy{
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+    margin-right: 40px;
+    background-color: yellow;
+}
+.input_promo{
+    width: 200px;
+    height: 30px;
+    margin-left: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+.bt_promo{
+    height: 30px;
+    width: 70px;
+    border-radius: 5px;
+    padding-right: 5px;
+    background-color: yellow;
+}
+.bt_promo:hover{
+    background-color: rgb(206, 206, 0);
+}
+.bt_buy:hover{
+    background-color: rgb(206, 206, 0);
+}
+@media screen and (max-width:1024px) {
+    .basket_modal {
+        margin: auto;
+        padding-top: 5px;
+        margin-top: 20px;
+        margin-left: 15px;
+        width: 45%;
+        height: 100%;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        background-color: #b6b5b5;
+    }   
+}
+@media screen and (max-width:576px) {
+    .basket_modal {
+        margin: auto;
+        padding-top: 5px;
+        margin-top: 20px;
+        width: 95%;
+        height: 100%;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        background-color: #b6b5b5;
+    }   
+}

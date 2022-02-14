@@ -50,7 +50,7 @@ class instruments {
             <img class="instruments_modal_img" src="${img}">
             <div class="instruments_modal_text">${text}</div>
             <div class="instruments_modal_pib">
-                <div class="instruments_modal_price">${price}</div>
+                <div class="instruments_modal_price">${price.toLocaleString()} Р</div>
                 <input class="instruments_modal_input" type="text" placeholder="1">
                 <button class="instruments_modal_button ${activeClass_instruments}" onclick="instruments_page.Set_storage_instruments(this, '${id}');">${activeText_instruments}</button>
         </div>

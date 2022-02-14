@@ -48,7 +48,7 @@ class Pc {
             <img class="pc_modal_img" src="${img}">
             <div class="pc_modal_text">${text}</div>
             <div class="pc_modal_pib">
-                <div class="pc_modal_price">${price}</div>
+                <div class="pc_modal_price">${price.toLocaleString()} Р</div>
                 <input class="pc_modal_input" type="text" placeholder="1">
                 <button class="pc_modal_button ${activeClass}" onclick="pc_page.Set_storage(this, '${id}');" >${activeText}</button>
         </div>

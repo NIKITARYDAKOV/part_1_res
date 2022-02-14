@@ -50,7 +50,7 @@ class tehnic {
             <img class="tehnic_modal_img" src="${img}">
             <div class="tehnic_modal_text">${text}</div>
             <div class="tehnic_modal_pib">
-                <div class="tehnic_modal_price">${price}</div>
+                <div class="tehnic_modal_price">${price.toLocaleString()} Р</div>
                 <input class="tehnic_modal_input" type="text" placeholder="1">
                 <button class="tehnic_modal_button ${activeClass_tehnic}" onclick="tehnic_page.Set_storage_tehnic(this, '${id}');">${activeText_tehnic}</button>
         </div>
@@ -63,7 +63,6 @@ class tehnic {
         ${html_catalog_tehnic}
         </div>
         `;
-
         ROOT_TEHNIC.innerHTML = html_tehnic;
     }
 }
