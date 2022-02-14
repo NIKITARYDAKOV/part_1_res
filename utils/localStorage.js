@@ -142,7 +142,7 @@ class LocalStorageUtil_sell {
         else {
             sell.splice(index, 1);
         }
-        localStorage.setItem(this.keyName, JSON.stringify(pc));
+        localStorage.setItem(this.keyName, JSON.stringify(sell));
 
         return { pushSell, sell }
     }
