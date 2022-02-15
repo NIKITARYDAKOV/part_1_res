@@ -140,11 +140,57 @@ class LocalStorageUtil_sell {
             pushSell = true;
         }
         else {
-            sell.splice(index, 1);
+            if(index >= 1){
+                sell.length = 0;
+                sell.push(id);
+            }
         }
+
+
         localStorage.setItem(this.keyName, JSON.stringify(sell));
 
         return { pushSell, sell }
+    }
+    removeSell(id){
+        let sell = this.getSell();
+        const index = sell.indexOf(id);
+        if(index >= 1){
+            sell.length = 0;
+            sell.push(id);
+        }
+    }
+}
+class LocalStorageUtil_promo {
+    constructor() {
+        this.keyName = 'promo';
+    }
+    getPromo() {
+        const sellLocalStorage = localStorage.getItem(this.keyName);
+        if (sellLocalStorage !== null) {
+            return JSON.parse(sellLocalStorage);
+        }
+        else
+            return [];
+    }
+    putPromo(id) {
+        let promo = this.getPromo();
+        let pushPromo = false;
+        const index = promo.indexOf(id);
+        if (index == -1) {
+            promo.push(id);
+            pushPromo = true;
+        }
+        else {
+            if(index >= 1){
+                promo.length = 0;
+                promo.push(id);
+            }
+        }
+
+
+        localStorage.setItem(this.keyName, JSON.stringify(promo));
+
+        return { pushPromo, promo }
     }
 }
 
@@ -154,3 +200,4 @@ const localStorageUtil_PHONE = new LocalStorageUtil_phone();
 const localStorageUtil_TEHNIC = new LocalStorageUtil_tehnic();
 const localStorageUtil_INSTRUMENTS = new LocalStorageUtil_instruments();
 const LocalStorageUtil_SELL = new LocalStorageUtil_sell();
+const LocalStorageUtil_PROMO = new LocalStorageUtil_promo();

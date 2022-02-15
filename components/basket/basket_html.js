@@ -3,22 +3,35 @@ var sumPhone = 0;
 var sumTehnic = 0;
 var sumInstruments = 0;
 var allSum = 0;
-var sum_check = false;
 
 class Basket_catalog {
 
+    // Если ввели промокод, и проверка на ранее введеный промо
     Promokod() {
+        const getSell = LocalStorageUtil_SELL.getSell();
+        const promo = LocalStorageUtil_PROMO.getPromo();
+        allSum = getSell[0];
         let input = document.getElementById("input_promo").value;
         let text = document.getElementById("text_sum");
         if (input == "SELL") {
-            sum_check = true;
-            allSum = sumPc + sumInstruments + sumPhone + sumTehnic;
-            allSum = allSum-( allSum * 0.3);
-            text.textContent = "Общая стоимость: "+allSum +" Р";
+            if (promo.length == 0) {
+                if (promo[0] !== 'done') {
+                    let promoDone = "done";
+                    allSum = allSum - (allSum * 0.3);
+                    text.textContent = "Общая стоимость: " + allSum.toFixed(0) + " Р";
+                    const pushSell = LocalStorageUtil_SELL.putSell(allSum);
+                    const pushRemove = LocalStorageUtil_SELL.removeSell(allSum);
+                    const push_promo = LocalStorageUtil_PROMO.putPromo(promoDone);
+                }
+                else {
+                    alert("Вы уже ввели промокод");
+                }
+            }
         }
 
     }
-    
+
+    // Методы для удаления определеного элемента из корзины
     Set_remove_pc(element, id) {
         const { pushPC } = localStorageUtil_PC.putPC(id);
         var d = document.getElementById("all_content_basket");
@@ -51,14 +64,19 @@ class Basket_catalog {
 
 
     render() {
+
+        // Объявление всех переменных из локального хранилища
         const activeClass_basket = ' ';
         const pcStore = localStorageUtil_PC.getPC();
         const phoneStore = localStorageUtil_PHONE.getPhone();
         const tehnicStore = localStorageUtil_TEHNIC.getTehnic();
         const instrumentsStore = localStorageUtil_INSTRUMENTS.getInstruments();
+        const pushSell = LocalStorageUtil_SELL.getSell();
+        const promo = LocalStorageUtil_PROMO.getPromo();
+
         let html_catalog_basket = '';
 
-
+        // Отрисовка элементов ,которые выбрал покупатель в корзину
         CATALOG.forEach(({ id, img, text, price }) => {
             if (pcStore.indexOf(id) !== -1) {
                 html_catalog_basket += `
@@ -74,7 +92,6 @@ class Basket_catalog {
                 sumPc += price;
             }
         });
-
         CATALOG_PHONE.forEach(({ id, img, text, price }) => {
             if (phoneStore.indexOf(id) !== -1) {
                 html_catalog_basket += `
@@ -121,6 +138,29 @@ class Basket_catalog {
             }
         });
 
+
+
+        //Проверка условиями на общую стоимость и промокод, и удаление ранее вставленного элемента в хранилище(замена)
+        allSum = sumPc + sumInstruments + sumPhone + sumTehnic;
+
+        if (allSum != 0) {
+            if (promo[0] == 'done') {
+                allSum = LocalStorageUtil_SELL.getSell();
+            }
+            else{
+                if (pushSell == 0) {
+                    const push = LocalStorageUtil_SELL.putSell(allSum);
+                }
+                else {
+                    const push1 = LocalStorageUtil_SELL.putSell(allSum);
+                    const pushRemove = LocalStorageUtil_SELL.removeSell(allSum);
+                }
+            }
+        }
+
+
+
+        // Статическая отрисовка сайта
         const html = `
         <div class="all_content_basket" id="all_content_basket" style="display: flex">
         ${html_catalog_basket}
@@ -134,18 +174,11 @@ class Basket_catalog {
         const body = document.body;
         body.appendChild(div);
 
-if(sum_check==true){
-    allSum = sumPc + sumInstruments + sumPhone + sumTehnic;
-    allSum = allSum - (allSum * 0.3);
-}
-else{
-    allSum = sumPc + sumInstruments + sumPhone + sumTehnic;
-}
-        
+
         const img_menu = `
 <div class="img_menu">
 <img src="../img/menu.svg">
-</div>`;
+        </div>`;
         const header = `
 <div class="header">
 <div class="header_ic">
@@ -170,7 +203,7 @@ else{
         </ul>
     </div>
 </div>
-</div>`;
+        </div>`;
         const left_cen = `
             <div class="left_cen">
         <div class="comp_content_basket">
@@ -187,8 +220,7 @@ else{
             </div>
             </div>
         </div>
-            </div>`;
-
+        </div>`;
         const footer = `<footer class="foot_er">
 
 <ul class="nav_bot">
@@ -210,19 +242,18 @@ else{
     <button class="bt_email">Submit</button>
 </div>
 <div class="Copyright">Copyright Karmy</div>
-</footer>`;
+        </footer>`;
 
         const content_html = `
-${img_menu}
-${header}
-${left_cen}
-${footer}
-`;
+        ${img_menu}
+        ${header}
+        ${left_cen}
+        ${footer}
+        `;
 
         div.innerHTML = content_html;
-
     }
 }
-
+// Отрисовка класса
 const basketStore_page = new Basket_catalog();
 basketStore_page.render();
