@@ -2,45 +2,50 @@ class Pc {
     constructor() {
         this.classNameActive = 'pc_modal_button_active';
         this.label_add = 'Купить';
-        this.label_remove = 'Удалить';
+        this.label_remove = 'В корзине';
     }
 
-    Set_storage(element, id) {
-        const { pushPC } = localStorageUtil_PC.putPC(id);
-        const pc = localStorageUtil_PC.getPC();
-        const tehnic = localStorageUtil_TEHNIC.getTehnic();
-        const phone = localStorageUtil_PHONE.getPhone();
-        const instruments = localStorageUtil_INSTRUMENTS.getInstruments();
-
-        if (pushPC == true) {
+    Set_storage(element, id, price) {
+        let name = 'pc';
+        const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price);
+        const productsStoreCount = JSON.parse(localStorage.getItem('products'));
+        let countPc = 0;
+        if (pushProducts.pushStore == true) {
 
             element.classList.add(this.classNameActive);
             element.innerHTML = this.label_remove;
 
         }
         else {
+            location.href = "../html/basket_html.html";
 
-            element.classList.remove(this.classNameActive);
-            element.innerHTML = this.label_add;
-            
         }
-        let count = pc.length + tehnic.length + phone.length + instruments.length;
-        header_basket.render(count);
+
+        while (productsStoreCount.length > countPc) {
+            if (productsStoreCount.indexOf(name) == -1) {
+                countPc++;
+            }
+        }
+        header_basket.render(countPc);
     }
     render() {
-        const pc_store = localStorageUtil_PC.getPC();
+        const productsStore = localStorage.getItem('products');
         let html_catalog_pc = '';
+
 
         CATALOG.forEach(({ id, img, text, price }) => {
             let activeClass = ' ';
             let activeText = ' ';
-
-            if (pc_store.indexOf(id) == -1) {
+            if (productsStore != null) {
+                if (productsStore.indexOf(id) == -1) {
+                    activeText = this.label_add;
+                }
+                else {
+                    activeClass = ' ' + this.classNameActive;
+                    activeText = this.label_remove;
+                }
+            } else {
                 activeText = this.label_add;
-            }
-            else {
-                activeClass = ' ' + this.classNameActive;
-                activeText = this.label_remove;
             }
 
             html_catalog_pc += `
@@ -50,7 +55,7 @@ class Pc {
             <div class="pc_modal_pib">
                 <div class="pc_modal_price">${price.toLocaleString()} Р</div>
                 <input class="pc_modal_input" type="text" placeholder="1">
-                <button class="pc_modal_button ${activeClass}" onclick="pc_page.Set_storage(this, '${id}');" >${activeText}</button>
+                <button class="pc_modal_button ${activeClass}" onclick="pc_page.Set_storage(this, '${id}','${price}');" >${activeText}</button>
         </div>
         </div>
             `;

@@ -44,7 +44,8 @@ object-fit: contain;
     margin-left: 2px;
 }
 .pc_modal_button_active{
-    background-color: red;
+    background-color: rgb(255, 208, 0);
+    white-space: nowrap;
 }
 .pc_modal_button_active:hover{
     background-color: rgba(252, 55, 55, 0.753);

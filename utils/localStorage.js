@@ -28,6 +28,53 @@ class LocalStorageUtil_pc {
 }
 
 
+class LocalStorageUtil_products {
+    constructor() {
+        this.keyName = 'products';
+    }
+    getProducts() {
+        const pcLocalStorage = localStorage.getItem(this.keyName);
+        if (pcLocalStorage !== null) {
+            return JSON.parse(pcLocalStorage);
+        }
+        else
+            return [];
+    }
+
+
+    putProducts(name, id, price) {
+        let products = this.getProducts();
+        let productsCheck = localStorage.getItem('products') || [];
+        const index = productsCheck.indexOf(id);
+        let pushStore = false;
+        let sum = '';
+        let count = 1;
+        if(name=='pc'){
+        const pushProducts = {
+            id: id,
+            name: name,
+            price: price,
+        }
+        if (index == -1) {
+            pushStore = true;
+
+            sum = localStorage.getItem('sum') || '0';
+            if(sum == 0){sum = 0;}else{sum = Number(sum);}
+            sum += Number(price);
+
+            products.push(pushProducts);
+            localStorage.setItem('sum', sum);
+        }
+        else{
+            products.splice(index, 1);
+        }
+        localStorage.setItem(this.keyName, JSON.stringify(products));
+        return{pushStore}
+    }
+    }
+}
+
+
 
 class LocalStorageUtil_phone {
     constructor() {
@@ -53,7 +100,7 @@ class LocalStorageUtil_phone {
             phone.splice(index, 1);
         }
         localStorage.setItem(this.keyName, JSON.stringify(phone));
-        
+
         return { push_phone, phone }
     }
 }
@@ -61,6 +108,7 @@ class LocalStorageUtil_phone {
 
 
 class LocalStorageUtil_tehnic {
+
     constructor() {
         this.keyName = 'tehnic';
     }
@@ -84,7 +132,7 @@ class LocalStorageUtil_tehnic {
             tehnic.splice(index, 1);
         }
         localStorage.setItem(this.keyName, JSON.stringify(tehnic));
-        
+
         return { push_tehnic, tehnic }
     }
 }
@@ -115,7 +163,7 @@ class LocalStorageUtil_instruments {
             instruments.splice(index, 1);
         }
         localStorage.setItem(this.keyName, JSON.stringify(instruments));
-        
+
         return { push_instruments, instruments }
     }
 }
@@ -140,7 +188,7 @@ class LocalStorageUtil_sell {
             pushSell = true;
         }
         else {
-            if(index >= 1){
+            if (index >= 1) {
                 sell.length = 0;
                 sell.push(id);
             }
@@ -151,10 +199,10 @@ class LocalStorageUtil_sell {
 
         return { pushSell, sell }
     }
-    removeSell(id){
+    removeSell(id) {
         let sell = this.getSell();
         const index = sell.indexOf(id);
-        if(index >= 1){
+        if (index >= 1) {
             sell.length = 0;
             sell.push(id);
         }
@@ -181,7 +229,7 @@ class LocalStorageUtil_promo {
             pushPromo = true;
         }
         else {
-            if(index >= 1){
+            if (index >= 1) {
                 promo.length = 0;
                 promo.push(id);
             }
@@ -201,3 +249,4 @@ const localStorageUtil_TEHNIC = new LocalStorageUtil_tehnic();
 const localStorageUtil_INSTRUMENTS = new LocalStorageUtil_instruments();
 const LocalStorageUtil_SELL = new LocalStorageUtil_sell();
 const LocalStorageUtil_PROMO = new LocalStorageUtil_promo();
+const LocalStorageUtilPRODUCTS = new LocalStorageUtil_products();

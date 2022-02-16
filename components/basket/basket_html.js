@@ -1,8 +1,3 @@
-var sumPc = 0;
-var sumPhone = 0;
-var sumTehnic = 0;
-var sumInstruments = 0;
-var allSum = 0;
 
 class Basket_catalog {
 
@@ -89,7 +84,6 @@ class Basket_catalog {
             </div>
             </div>
 `;
-                sumPc += price;
             }
         });
         CATALOG_PHONE.forEach(({ id, img, text, price }) => {
@@ -104,7 +98,6 @@ class Basket_catalog {
             </div>
             </div>
 `;
-                sumPhone += price
             }
         });
         CATALOG_TEHNIC.forEach(({ id, img, text, price }) => {
@@ -119,7 +112,6 @@ class Basket_catalog {
             </div>
             </div>
 `;
-                sumTehnic += price;
             }
         });
         CATALOG_INSTRUMENTS.forEach(({ id, img, text, price }) => {
@@ -134,29 +126,9 @@ class Basket_catalog {
             </div>
             </div>
 `;
-                sumInstruments += price;
             }
         });
 
-
-
-        //Проверка условиями на общую стоимость и промокод, и удаление ранее вставленного элемента в хранилище(замена)
-        allSum = sumPc + sumInstruments + sumPhone + sumTehnic;
-
-        if (allSum != 0) {
-            if (promo[0] == 'done') {
-                allSum = LocalStorageUtil_SELL.getSell();
-            }
-            else{
-                if (pushSell == 0) {
-                    const push = LocalStorageUtil_SELL.putSell(allSum);
-                }
-                else {
-                    const push1 = LocalStorageUtil_SELL.putSell(allSum);
-                    const pushRemove = LocalStorageUtil_SELL.removeSell(allSum);
-                }
-            }
-        }
 
 
 
@@ -215,7 +187,7 @@ class Basket_catalog {
         <button class="bt_promo" onclick="basketStore_page.Promokod()">ОК</button>
         </div>
         <div class="sell_basket">
-        <text class="text_sum" id="text_sum">Общая стоимость: ${allSum.toLocaleString()} Р</text>
+        <text class="text_sum" id="text_sum">Общая стоимость: Р</text>
         <button class="bt_buy">Купить</button>
             </div>
             </div>

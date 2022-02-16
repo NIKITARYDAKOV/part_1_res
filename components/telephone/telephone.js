@@ -11,6 +11,7 @@ class Phone {
         const tehnic = localStorageUtil_TEHNIC.getTehnic();
         const phone_2 = localStorageUtil_PHONE.getPhone();
         const instruments = localStorageUtil_INSTRUMENTS.getInstruments();
+        
         if (push_phone == true) {
             element.classList.add(this.classNameActive_phone);
             element.innerHTML = this.label_remove_phone;
