@@ -3,11 +3,13 @@ class Basket_head {
         let countPc = 0;
         let name = 'pc';
         const productsStoreCount = JSON.parse(localStorage.getItem('products'));
+        if(productsStoreCount!==null){
         while (productsStoreCount.length > countPc) {
             if (productsStoreCount.indexOf(name) == -1) {
                 countPc++;
             }
         }
+    }
 return countPc;
     }
 

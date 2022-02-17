@@ -42,35 +42,70 @@ class LocalStorageUtil_products {
     }
 
 
-    putProducts(name, id, price) {
+    putProducts(name, id, price, count) {
         let products = this.getProducts();
         let productsCheck = localStorage.getItem('products') || [];
         const index = productsCheck.indexOf(id);
         let pushStore = false;
         let sum = '';
-        let count = 1;
-        if(name=='pc'){
-        const pushProducts = {
-            id: id,
-            name: name,
-            price: price,
-        }
-        if (index == -1) {
-            pushStore = true;
+        if (name == 'pc') {
 
-            sum = localStorage.getItem('sum') || '0';
-            if(sum == 0){sum = 0;}else{sum = Number(sum);}
-            sum += Number(price);
+            const pushProducts = {
+                id: id,
+                name: name,
+                price: price,
+                count: count
+            }
 
-            products.push(pushProducts);
-            localStorage.setItem('sum', sum);
+            if (index == -1) {
+                pushStore = true;
+
+                sum = JSON.parse(localStorage.getItem('sum') || '0');
+                if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
+                sum += Number(price);
+                sum = sum * count;
+                const sumPc = {
+                    name: name,
+                    sum: sum
+                }
+                products.push(pushProducts);
+                localStorage.setItem('sum', JSON.stringify(sumPc));
+            }
+            else {
+                products.splice(index, 1);
+            }
+            localStorage.setItem(this.keyName, JSON.stringify(products));
+            return { pushStore }
         }
-        else{
-            products.splice(index, 1);
+        if (name == 'phone') {
+
+            const pushProducts = {
+                id: id,
+                name: name,
+                price: price,
+                count: count
+            }
+
+            if (index == -1) {
+                pushStore = true;
+
+                sum = JSON.parse(localStorage.getItem('sum') || '0');
+                if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
+                sum += Number(price);
+                sum = sum * count;
+                const sumPc = {
+                    name: name,
+                    sum: sum
+                }
+                products.push(pushProducts);
+                localStorage.setItem('sum', JSON.stringify(sumPc));
+            }
+            else {
+                products.splice(index, 1);
+            }
+            localStorage.setItem(this.keyName, JSON.stringify(products));
+            return { pushStore }
         }
-        localStorage.setItem(this.keyName, JSON.stringify(products));
-        return{pushStore}
-    }
     }
 }
 

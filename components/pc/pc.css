@@ -48,7 +48,7 @@ object-fit: contain;
     white-space: nowrap;
 }
 .pc_modal_button_active:hover{
-    background-color: rgba(252, 55, 55, 0.753);
+    background-color: rgb(216, 176, 0);
 }
 @media screen and (max-width:1024px) {
     .pc_modal {
