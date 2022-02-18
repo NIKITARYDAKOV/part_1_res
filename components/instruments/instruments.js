@@ -2,48 +2,73 @@ class instruments {
     constructor() {
         this.class_instruments = "instruments_modal_button_active";
         this.label_add_instruments = 'Купить';
-        this.label_remove_instruments = 'Удалить';
+        this.label_remove_instruments = 'В корзине';
     }
 
-    Set_storage_instruments(element, id) {
+    //Этот метод срабатывает при нажатии на кнопку, передается 4 переменные(кнопка,id,price, массив элементов)
+    Set_storage(element, id, price, count2) {
+        let name = 'instruments';
+        let count;
+        let i = 1;
 
-        const { push_instruments, instruments } = localStorageUtil_INSTRUMENTS.putInstruments(id);
-        const pc = localStorageUtil_PC.getPC();
-        const tehnic = localStorageUtil_TEHNIC.getTehnic();
-        const phone = localStorageUtil_PHONE.getPhone();
-        const instruments_2 = localStorageUtil_INSTRUMENTS.getInstruments();
-        if (push_instruments==true) {
+        //Поиск элемента соответсующего id
+        for (i; i < count2.length + 1; i++) {
+            if (id.indexOf(i) !== -1) {
+                count = count2[i - 1];
+            }
+        }
+
+        //Считываем количество положеного в корзину товара.
+        if (count.value == '') {
+            count2 = 1;
+        }
+        else {
+            count2 = count.value;
+        }
+
+        //Отправляем товар в класс
+        const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
+        const productsStoreCount = JSON.parse(localStorage.getItem('productsInstr'));
+        let countPc = 0;
+        if (pushProducts.pushStoreInstr == true) {
 
             element.classList.add(this.class_instruments);
             element.innerHTML = this.label_remove_instruments;
 
         }
         else {
-
-            element.classList.remove(this.class_instruments);
-            element.innerHTML = this.label_add_instruments;
-
+            location.href = "../html/basket_html.html";
         }
-        let count = pc.length + tehnic.length + phone.length + instruments_2.length;
-        header_basket.render(count);
+
+
+        //Отрисовываем количество элементов в корзине
+        while (productsStoreCount.length > countPc) {
+            if (productsStoreCount.indexOf(name) == -1) {
+                countPc++;
+            }
+        }
+
+        header_basket.render(countPc);
     }
 
 
     render() {
-        const instruments_store = localStorageUtil_INSTRUMENTS.getInstruments();
+        const productsStore = localStorage.getItem('productsInstr');
         let html_catalog_instruments = '';
 
         CATALOG_INSTRUMENTS.forEach(({ id, img, text, price }) => {
+
             let activeClass_instruments = ' ';
             let activeText_instruments = ' ';
 
-
-            if (instruments_store.indexOf(id) == -1) {
+            if (productsStore != null) {
+            if (productsStore.indexOf(id) == -1) {
                 activeText_instruments = this.label_add_instruments;
             } else {
                 activeClass_instruments = ' ' + this.class_instruments;
                 activeText_instruments = this.label_remove_instruments;
             }
+        }else{ activeText_instruments = this.label_add_instruments;}
 
             html_catalog_instruments += `
             <div class="instruments_modal">
@@ -51,8 +76,8 @@ class instruments {
             <div class="instruments_modal_text">${text}</div>
             <div class="instruments_modal_pib">
                 <div class="instruments_modal_price">${price.toLocaleString()} Р</div>
-                <input class="instruments_modal_input" type="text" placeholder="1">
-                <button class="instruments_modal_button ${activeClass_instruments}" onclick="instruments_page.Set_storage_instruments(this, '${id}');">${activeText_instruments}</button>
+                <input id="instruments_modal_input" class="instruments_modal_input" type="text" placeholder="1">
+                <button class="instruments_modal_button ${activeClass_instruments}" onclick="instruments_page.Set_storage(this, '${id}','${price}',instruments_modal_input);">${activeText_instruments}</button>
         </div>
         </div>
             `;

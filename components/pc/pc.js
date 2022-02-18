@@ -5,7 +5,7 @@ class Pc {
         this.label_remove = 'В корзине';
     }
 
-    //Этот мед срабатывает при нажатии на кнопку, передается 4 переменные(кнопка,id,price, массив элементов)
+    //Этот метод срабатывает при нажатии на кнопку, передается 4 переменные(кнопка,id,price, массив элементов)
     Set_storage(element, id, price, count2) {
         let name = 'pc';
         let count;
@@ -28,7 +28,7 @@ class Pc {
 
         //Отправляем товар в класс
         const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
-        const productsStoreCount = JSON.parse(localStorage.getItem('products'));
+        const productsStoreCount = JSON.parse(localStorage.getItem('productsPc'));
         let countPc = 0;
         if (pushProducts.pushStore == true) {
 
@@ -52,24 +52,18 @@ class Pc {
         header_basket.render(countPc);
     }
     render() {
-        const productsStore = localStorage.getItem('products');
-        const productsStoreCheck = JSON.parse(localStorage.getItem('products'));
+        const productsStore = localStorage.getItem('productsPc');
         let html_catalog_pc = '';
 
 
         CATALOG.forEach(({ id, img, text, price }) => {
             let activeClass = ' ';
             let activeText = ' ';
-            let name = 'pc';
 
-            //Проверка элементов на уже ранее добавленные в корзину. Проверка по(id,name)
+            //Проверка элементов на уже ранее добавленные в корзину. Проверка по(id)
             if (productsStore != null) {
-                // alert(productsStore.indexOf(id));
-                //alert("name"+productsStoreCheck.indexOf(name));
-                if (productsStoreCheck.indexOf(name) == -1) {
-                    if (productsStore.indexOf(id) == -1) {
-                        activeText = this.label_add;
-                    }
+                if (productsStore.indexOf(id) == -1) {
+                    activeText = this.label_add;
                 }
                 else {
                     activeClass = ' ' + this.classNameActive;

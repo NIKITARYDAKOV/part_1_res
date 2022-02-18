@@ -1,8 +1,14 @@
 class Basket_head {
     LoadPc(){
         let countPc = 0;
+        let countPhone = 0;
+        let countTehnic = 0;
+        let countInstr = 0;
         let name = 'pc';
-        const productsStoreCount = JSON.parse(localStorage.getItem('products'));
+        const productsStoreCount = JSON.parse(localStorage.getItem('productsPc'));
+        const productsStoreCountPhone = JSON.parse(localStorage.getItem('productsPhone'));
+        const productsStoreCountTehnic = JSON.parse(localStorage.getItem('productsTehnic'));
+        const productsStoreCountInstr = JSON.parse(localStorage.getItem('productsInstr'));
         if(productsStoreCount!==null){
         while (productsStoreCount.length > countPc) {
             if (productsStoreCount.indexOf(name) == -1) {
@@ -10,7 +16,28 @@ class Basket_head {
             }
         }
     }
-return countPc;
+    if(productsStoreCountPhone!==null){
+        while (productsStoreCountPhone.length > countPc) {
+            if (productsStoreCountPhone.indexOf(name) == -1) {
+                countPhone++;
+            }
+        }
+    }
+    if(productsStoreCountTehnic!==null){
+        while (productsStoreCountTehnic.length > countPc) {
+            if (productsStoreCountTehnic.indexOf(name) == -1) {
+                countTehnic++;
+            }
+        }
+    }
+    if(productsStoreCountInstr!==null){
+        while (productsStoreCountInstr.length > countPc) {
+            if (productsStoreCountInstr.indexOf(name) == -1) {
+                countInstr++;
+            }
+        }
+    }
+return countPc+countPhone+countTehnic+countInstr;
     }
 
     render(count) {
@@ -32,12 +59,8 @@ return countPc;
     }
 }
 
-const pcStore = localStorageUtil_PC.getPC();
-const tehnicStore = localStorageUtil_TEHNIC.getTehnic();
-const phoneStore = localStorageUtil_PHONE.getPhone();
-const instrumentsStore = localStorageUtil_INSTRUMENTS.getInstruments();
 
 
 const header_basket = new Basket_head();
-const cou = header_basket.LoadPc() + tehnicStore.length + phoneStore.length + instrumentsStore.length;
+const cou = header_basket.LoadPc();
 header_basket.render(cou);

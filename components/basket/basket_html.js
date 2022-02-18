@@ -62,18 +62,14 @@ class Basket_catalog {
 
         // Объявление всех переменных из локального хранилища
         const activeClass_basket = ' ';
-        const pcStore = localStorageUtil_PC.getPC();
-        const phoneStore = localStorageUtil_PHONE.getPhone();
-        const tehnicStore = localStorageUtil_TEHNIC.getTehnic();
-        const instrumentsStore = localStorageUtil_INSTRUMENTS.getInstruments();
-        const pushSell = LocalStorageUtil_SELL.getSell();
-        const promo = LocalStorageUtil_PROMO.getPromo();
+        const productsStore = localStorage.getItem('productsPc');
 
         let html_catalog_basket = '';
 
         // Отрисовка элементов ,которые выбрал покупатель в корзину
         CATALOG.forEach(({ id, img, text, price }) => {
-            if (pcStore.indexOf(id) !== -1) {
+            if(productsStore !== null){
+            if (productsStore.indexOf(id) !== -1) {
                 html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal">
                 <img class="basket_modal_img" src="${img}">
@@ -85,9 +81,10 @@ class Basket_catalog {
             </div>
 `;
             }
+        }
         });
         CATALOG_PHONE.forEach(({ id, img, text, price }) => {
-            if (phoneStore.indexOf(id) !== -1) {
+            if (productsStore.indexOf(id) !== -1) {
                 html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal2">
                 <img class="basket_modal_img" src="${img}">
@@ -101,7 +98,7 @@ class Basket_catalog {
             }
         });
         CATALOG_TEHNIC.forEach(({ id, img, text, price }) => {
-            if (tehnicStore.indexOf(id) !== -1) {
+            if (productsStore.indexOf(id) !== -1) {
                 html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal3">
                 <img class="basket_modal_img" src="${img}">
@@ -115,7 +112,7 @@ class Basket_catalog {
             }
         });
         CATALOG_INSTRUMENTS.forEach(({ id, img, text, price }) => {
-            if (instrumentsStore.indexOf(id) !== -1) {
+            if (productsStore.indexOf(id) !== -1) {
                 html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal4">
                 <img class="basket_modal_img" src="${img}">

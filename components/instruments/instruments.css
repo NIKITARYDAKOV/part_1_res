@@ -45,10 +45,11 @@ object-fit: contain;
     margin-left: 2px;
 }
 .instruments_modal_button_active{
-    background-color: red;
+    background-color: rgb(255, 208, 0);
+    white-space: nowrap;
 }
 .instruments_modal_button_active:hover{
-    background-color: rgba(252, 55, 55, 0.753);
+    background-color: rgb(216, 176, 0);
 }
 
 
