@@ -27,11 +27,9 @@ class Basket_catalog {
     }
 
     // Методы для удаления определеного элемента из корзины
-    Set_remove_pc(element, id) {
-        const { pushPC } = localStorageUtil_PC.putPC(id);
-        var d = document.getElementById("all_content_basket");
-        var d_nested = document.getElementById("basket_modal");
-        var throwawayNode = d.removeChild(d_nested);
+    Set_remove_pc(element, id,price) {
+        let name = 'pc';
+        const removePc =  LocalStorageUtilPRODUCTS.putProducts(name,id,price,0);
         location.reload();
     }
     Set_remove_phone(element, id) {
@@ -76,7 +74,7 @@ class Basket_catalog {
                 <div class="basket_modal_text">${text}</div>
                 <div class="basket_modal_pib">
                     <div class="basket_modal_price">${price.toLocaleString()} Р</div>
-                    <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_pc(this,'${id}');">Удалить</button>
+                    <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_pc(this,'${id}','${price}');">Удалить</button>
             </div>
             </div>
 `;

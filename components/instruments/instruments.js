@@ -7,9 +7,7 @@ class instruments {
 
     //Этот метод срабатывает при нажатии на кнопку, передается 4 переменные(кнопка,id,price, массив элементов)
     Set_storage(element, id, price, count2) {
-        let name = 'instruments';
-        let count;
-        let i = 1;
+        let name = 'instruments',count,i = 1;
 
         //Поиск элемента соответсующего id
         for (i; i < count2.length + 1; i++) {
@@ -28,26 +26,19 @@ class instruments {
 
         //Отправляем товар в класс
         const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
-        const productsStoreCount = JSON.parse(localStorage.getItem('productsInstr'));
-        let countPc = 0;
         if (pushProducts.pushStoreInstr == true) {
-
             element.classList.add(this.class_instruments);
             element.innerHTML = this.label_remove_instruments;
-
         }
         else {
             location.href = "../html/basket_html.html";
         }
 
-
-        //Отрисовываем количество элементов в корзине
-        while (productsStoreCount.length > countPc) {
-            if (productsStoreCount.indexOf(name) == -1) {
-                countPc++;
-            }
-        }
-
+        const productPc = LocalStorageUtilPRODUCTS.getProductsPc();
+        const productPhone = LocalStorageUtilPRODUCTS.getProductsPhone();
+        const productTehnic = LocalStorageUtilPRODUCTS.getProductsTehnic();
+        const productInstr = LocalStorageUtilPRODUCTS.getProductsInstr();
+        let countPc = productPc.length + productPhone.length + productTehnic.length + productInstr.length;
         header_basket.render(countPc);
     }
 

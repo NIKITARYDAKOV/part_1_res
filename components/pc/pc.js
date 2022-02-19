@@ -7,29 +7,28 @@ class Pc {
 
     //Этот метод срабатывает при нажатии на кнопку, передается 4 переменные(кнопка,id,price, массив элементов)
     Set_storage(element, id, price, count2) {
-        let name = 'pc';
-        let count;
-        let i = 1;
+        let name = 'pc', count, i = 1;
 
-        //Поиск элемента соответсующего id
-        for (i; i < count2.length + 1; i++) {
-            if (id.indexOf(i) !== -1) {
-                count = count2[i - 1];
+        const chet = (i, count2, count) => {
+            //Поиск элемента соответсующего id
+            for (i; i < count2.length + 1; i++) {
+                if (id.indexOf(i) !== -1) {
+                    count = count2[i - 1];
+                }
             }
-        }
 
-        //Считываем количество положеного в корзину товара.
-        if (count.value == '') {
-            count2 = 1;
-        }
-        else {
-            count2 = count.value;
+            //Считываем количество положеного в корзину товара.
+            if (count.value == '') {
+                count2 = 1;
+            }
+            else {
+                count2 = count.value;
+            }
+            return Number(count2);
         }
 
         //Отправляем товар в класс
-        const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
-        const productsStoreCount = JSON.parse(localStorage.getItem('productsPc'));
-        let countPc = 0;
+        const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, chet(i, count2, count));
         if (pushProducts.pushStore == true) {
 
             element.classList.add(this.classNameActive);
@@ -41,14 +40,11 @@ class Pc {
 
         }
 
-
-        //Отрисовываем количество элементов в корзине
-        while (productsStoreCount.length > countPc) {
-            if (productsStoreCount.indexOf(name) == -1) {
-                countPc++;
-            }
-        }
-
+        const productPc = LocalStorageUtilPRODUCTS.getProductsPc();
+        const productPhone = LocalStorageUtilPRODUCTS.getProductsPhone();
+        const productTehnic = LocalStorageUtilPRODUCTS.getProductsTehnic();
+        const productInstr = LocalStorageUtilPRODUCTS.getProductsInstr();
+        let countPc = productPc.length + productPhone.length + productTehnic.length + productInstr.length;
         header_basket.render(countPc);
     }
     render() {

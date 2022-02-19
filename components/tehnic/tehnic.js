@@ -7,9 +7,7 @@ class tehnic {
 
     //Этот метод срабатывает при нажатии на кнопку, передается 4 переменные(кнопка,id,price, массив элементов)
     Set_storage(element, id, price, count2) {
-        let name = 'tehnic';
-        let count;
-        let i = 1;
+        let name = 'tehnic', count, i = 1;
 
         //Поиск элемента соответсующего id
         for (i; i < count2.length + 1; i++) {
@@ -21,33 +19,25 @@ class tehnic {
         //Считываем количество положеного в корзину товара.
         if (count.value == '') {
             count2 = 1;
-        }
-        else {
+        } else {
             count2 = count.value;
         }
 
         //Отправляем товар в класс
         const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
-        const productsStoreCount = JSON.parse(localStorage.getItem('productsTehnic'));
-        let countPc = 0;
         if (pushProducts.pushStoreTehnic == true) {
-
             element.classList.add(this.class_tehnic);
             element.innerHTML = this.label_remove_tehnic;
-
-        }
-        else {
+        } else {
             location.href = "../html/basket_html.html";
         }
 
 
-        //Отрисовываем количество элементов в корзине
-        while (productsStoreCount.length > countPc) {
-            if (productsStoreCount.indexOf(name) == -1) {
-                countPc++;
-            }
-        }
-
+        const productPc = LocalStorageUtilPRODUCTS.getProductsPc();
+        const productPhone = LocalStorageUtilPRODUCTS.getProductsPhone();
+        const productTehnic = LocalStorageUtilPRODUCTS.getProductsTehnic();
+        const productInstr = LocalStorageUtilPRODUCTS.getProductsInstr();
+        let countPc = productPc.length + productPhone.length + productTehnic.length + productInstr.length;
         header_basket.render(countPc);
     }
 
@@ -61,13 +51,13 @@ class tehnic {
             let activeText_tehnic = ' ';
 
             if (productsStore != null) {
-            if (productsStore.indexOf(id) == -1) {
-                activeText_tehnic = this.label_add_tehnic;
-            } else {
-                activeClass_tehnic = ' ' + this.class_tehnic;
-                activeText_tehnic = this.label_remove_tehnic;
-            }
-        }else{ activeText_tehnic = this.label_add_tehnic;}
+                if (productsStore.indexOf(id) == -1) {
+                    activeText_tehnic = this.label_add_tehnic;
+                } else {
+                    activeClass_tehnic = ' ' + this.class_tehnic;
+                    activeText_tehnic = this.label_remove_tehnic;
+                }
+            } else { activeText_tehnic = this.label_add_tehnic; }
 
             html_catalog_tehnic += `
             <div class="tehnic_modal">

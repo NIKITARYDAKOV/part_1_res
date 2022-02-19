@@ -6,37 +6,38 @@ class Phone {
     }
 
     Set_storage(element, id, price, count2) {
-        let name = 'phone';
-        let count;
-        let i = 1;
+        let name = 'phone', count, i = 1;
+
+
         for (i; i < count2.length + 1; i++) {
             if (id.indexOf(i) !== -1) {
                 count = count2[i - 1];
             }
         }
+
         if (count.value == '') {
             count2 = 1;
-        }
-        else {
+        } else {
             count2 = count.value;
         }
+
         const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
-        const productsStoreCount = JSON.parse(localStorage.getItem('productsPhone'));
-        let countPhone = 0;
         if (pushProducts.pushStorePhone == true) {
             element.classList.add(this.classNameActive_phone);
             element.innerHTML = this.label_remove_phone;
-        }
-        else {
+        } else {
             location.href = "../html/basket_html.html";
 
         }
-        while (productsStoreCount.length > countPhone) {
-            if (productsStoreCount.indexOf(name) == -1) {
-                countPhone++;
-            }
-        }
-        header_basket.render(countPhone);
+
+        
+        const productPc = LocalStorageUtilPRODUCTS.getProductsPc();
+        const productPhone = LocalStorageUtilPRODUCTS.getProductsPhone();
+        const productTehnic = LocalStorageUtilPRODUCTS.getProductsTehnic();
+        const productInstr = LocalStorageUtilPRODUCTS.getProductsInstr();
+        let countPc = productPc.length + productPhone.length + productTehnic.length + productInstr.length;
+        header_basket.render(countPc);
+
     }
 
     render() {
@@ -55,8 +56,7 @@ class Phone {
                     activeClass_phone = ' ' + this.classNameActive_phone;
                     activeText_phone = this.label_remove_phone;
                 }
-            } else 
-            {
+            } else {
                 activeText_phone = this.label_add_phone;
             }
 
