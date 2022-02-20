@@ -6,6 +6,7 @@
 .all_content_basket_active{
     display: none;
 }
+
 .basket_modal {
     padding-top: 5px;
     margin-top: 20px;
@@ -81,6 +82,10 @@ margin-left: 5px;
 }
 .bt_buy:hover{
     background-color: rgb(206, 206, 0);
+}
+.basket_text{
+text-align: center;
+
 }
 @media screen and (max-width:1024px) {
     .basket_modal {

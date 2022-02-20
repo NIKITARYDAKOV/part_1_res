@@ -53,7 +53,7 @@ padding-top: 15px;
 /*Левое меню*/
 .left_cen {
     display: flex;
-
+    height: calc(100vh - 187px);
 }
 .sedebar_left {
     width: 20%
