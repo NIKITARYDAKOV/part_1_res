@@ -6,18 +6,19 @@ class Basket_catalog {
         let input = document.getElementById("input_promo").value;
         let text = document.getElementById("text_sum");
         const getPromo = LocalStorageUtilSUM.getPromo();
-        if(getPromo == 0){
-        if (input == "SELL") {
-            const pushSum = LocalStorageUtilSUM.pushSum(input);
-        }
-    }else {alert("Вы уже ввели промокод");}
-location.reload();
+        if (getPromo == 0) {
+            if (input == "SELL") {
+                const pushSum = LocalStorageUtilSUM.pushSum(input);
+            }
+        } else { alert("Вы уже ввели промокод"); }
+        location.reload();
     }
 
     // Методы для удаления определеного элемента из корзины
     Set_remove_pc(element, id, price) {
         let name = 'pc';
         const removePc = LocalStorageUtilPRODUCTS.putProducts(name, id, price, 0);
+
         location.reload();
     }
     Set_remove_phone(element, id, price) {
@@ -43,12 +44,22 @@ location.reload();
         const tehnicSum = LocalStorageUtilSUM.getSumTehnic(); if (tehnicSum !== 0) { getTehnic = tehnicSum.sum; } else getTehnic = 0;
         const InstrSum = LocalStorageUtilSUM.getSumInstr(); if (InstrSum !== 0) { getInstr = InstrSum.sum; } else getInstr = 0;
         let allSum = getPc + getPhone + getTehnic + getInstr;
-        if(allSum<0){
+        if (allSum < 0) {
             allSum = 0;
         }
         return allSum;
     }
+    ReloadSum() {
+        const productsStore = LocalStorageUtilPRODUCTS.getProductsPc();
+        CATALOG.forEach(({ id, price }) => {
+            if (productsStore !== null) {
+                if (productsStore.indexOf(id) !== -1) {
+                    const ReloadSum = LocalStorageUtilSUM.ReloadSum(price);
+                }
+            }
+        });
 
+    }
     render() {
 
         // Объявление всех переменных из локального хранилища
@@ -61,10 +72,11 @@ location.reload();
         let html_catalog_basket = '';
 
         // Отрисовка элементов ,которые выбрал покупатель в корзину
-        CATALOG.forEach(({ id, img, text, price }) => {
-            if (productsStore !== null) {
-                if (productsStore.indexOf(id) !== -1) {
-                    html_catalog_basket += `
+        CATALOG.forEach(({ id, img, text, price, i }) => {
+            if (productsStore.length > i) {
+                if (productsStore.length !== 0) {
+                    if (productsStore[i].id.indexOf(id) !== -1) {
+                        html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal">
                 <img class="basket_modal_img" src="${img}">
                 <div class="basket_modal_text">${text}</div>
@@ -74,6 +86,7 @@ location.reload();
             </div>
             </div>
 `;
+                    }
                 }
             }
         });
