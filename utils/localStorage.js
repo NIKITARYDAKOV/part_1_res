@@ -46,11 +46,10 @@ class LocalStorageUtil_products {
         let pushStorePhone = false;
         let pushStoreTehnic = false;
         let pushStoreInstr = false;
-
+        price = Number(price);
         let sum = 0;
         if (name == 'pc') {
             let products = this.getProductsPc();
-            let countProducts = JSON.parse(localStorage.getItem('countPc') || '[]');
             let index = products.indexOf(id);
             if (index == -1) {
                 pushStore = true;
@@ -69,8 +68,7 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumPc', JSON.stringify(sumPc));
                 }
 
-                products.push(id);
-                countProducts.push(Pushid);
+                products.push(Pushid);
                 countSum();
 
             }
@@ -87,14 +85,12 @@ class LocalStorageUtil_products {
             }
 
             localStorage.setItem(this.NamePc, JSON.stringify(products));
-            localStorage.setItem('countPc', JSON.stringify(countProducts));
             return { pushStore }
         }
 
 
         if (name == 'phone') {
             let productsPhone = this.getProductsPhone();
-            let countProducts = JSON.parse(localStorage.getItem('countPhone') || '[]');
             let index = productsPhone.indexOf(id);
 
 
@@ -115,10 +111,9 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumPhone', JSON.stringify(sumPhone));
                 }
 
-                productsPhone.push(id);
-                countProducts.push(Pushid)
+                productsPhone.push(Pushid);
                 countSum();
-            } 
+            }
             else {
                 // const removeSum = () => {
                 //     sum = JSON.parse(localStorage.getItem('sumPhone') || '0');
@@ -131,14 +126,12 @@ class LocalStorageUtil_products {
                 // removeSum();
             }
             localStorage.setItem(this.NamePhone, JSON.stringify(productsPhone));
-            localStorage.setItem('countPhone', JSON.stringify(countProducts));
             return { pushStorePhone }
         }
 
 
         if (name == 'tehnic') {
             let productsTehnic = this.getProductsTehnic();
-            let countProducts = JSON.parse(localStorage.getItem('countTehnic') || '[]');
             let index = productsTehnic.indexOf(id);
 
             if (index == -1) {
@@ -158,11 +151,10 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumTehnic', JSON.stringify(sumTehnic));
                 }
 
-                productsTehnic.push(id);
-                countProducts.push(Pushid)
+                productsTehnic.push(Pushid);
                 countSum();
 
-            } 
+            }
             else {
                 // const removeSum = () => {
                 //     sum = JSON.parse(localStorage.getItem('sumTehnic') || '0');
@@ -176,14 +168,12 @@ class LocalStorageUtil_products {
             }
 
             localStorage.setItem(this.NameTehnic, JSON.stringify(productsTehnic));
-            localStorage.setItem('countTehnic', JSON.stringify(countProducts));
             return { pushStoreTehnic }
         }
 
 
         if (name == 'instruments') {
             let productsInstr = this.getProductsInstr();
-            let countProducts = JSON.parse(localStorage.getItem('countInstr') || '[]');
             let index = productsInstr.indexOf(id);
 
             if (index == -1) {
@@ -203,10 +193,9 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumInstr', JSON.stringify(sumInstr));
                 }
 
-                productsInstr.push(id);
-                countProducts.push(Pushid);
+                productsInstr.push(Pushid);
                 countSum();
-            } 
+            }
             else {
                 // const removeSum = () => {
                 //     sum = JSON.parse(localStorage.getItem('sumInstr') || '0');
@@ -220,7 +209,6 @@ class LocalStorageUtil_products {
             }
 
             localStorage.setItem(this.NameInstruments, JSON.stringify(productsInstr));
-            localStorage.setItem('countInstr', JSON.stringify(countProducts));
             return { pushStoreInstr }
         }
     }
