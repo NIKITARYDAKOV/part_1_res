@@ -39,7 +39,6 @@ class Pc {
             location.href = "../html/basket_html.html";
 
         }
-
         const productPc = LocalStorageUtilPRODUCTS.getProductsPc();
         const productPhone = LocalStorageUtilPRODUCTS.getProductsPhone();
         const productTehnic = LocalStorageUtilPRODUCTS.getProductsTehnic();
@@ -52,12 +51,12 @@ class Pc {
         let html_catalog_pc = '';
 
 
-        CATALOG.forEach(({ id, img, text, price }) => {
+        CATALOG.forEach(({ id, img, text, price,i }) => {
             let activeClass = ' ';
             let activeText = ' ';
 
             //Проверка элементов на уже ранее добавленные в корзину. Проверка по(id)
-            if (productsStore != null) {
+            if (productsStore !== null) {
                 if (productsStore.indexOf(id) == -1) {
                     activeText = this.label_add;
                 }

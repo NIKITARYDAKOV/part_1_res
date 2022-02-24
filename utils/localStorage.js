@@ -50,16 +50,17 @@ class LocalStorageUtil_products {
         let sum = 0;
         if (name == 'pc') {
             let products = this.getProductsPc();
-            const index = products.indexOf(id);
-
+            let countProducts = JSON.parse(localStorage.getItem('countPc') || '[]');
+            let index = products.indexOf(id);
             if (index == -1) {
                 pushStore = true;
+
                 const Pushid = {
-                    name: name,
                     id: id,
                     price: price,
                     count: count
                 }
+
                 const countSum = () => {
                     sum = JSON.parse(localStorage.getItem('sumPc') || '0');
                     if (sum != 0) { sum = Number(sum.sum); }
@@ -68,35 +69,39 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumPc', JSON.stringify(sumPc));
                 }
 
-                products.push(Pushid);
+                products.push(id);
+                countProducts.push(Pushid);
                 countSum();
 
-            } else {
-                const removeSum = () => {
-                    sum = JSON.parse(localStorage.getItem('sumPc') || '0');
-                    if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
-                    sum = sum - price;
-                    const sumPc = { sum: sum }
-                    localStorage.setItem('sumPc', JSON.stringify(sumPc));
-                }
-                products.splice(index, 1);
-                removeSum();
+            }
+            else {
+                // const removeSum = () => {
+                //     sum = JSON.parse(localStorage.getItem('sumPc') || '0');
+                //     if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
+                //     sum = sum - price;
+                //     const sumPc = { sum: sum }
+                //     localStorage.setItem('sumPc', JSON.stringify(sumPc));
+                // }
+                // products.splice(index, 1);
+                // removeSum();
             }
 
             localStorage.setItem(this.NamePc, JSON.stringify(products));
+            localStorage.setItem('countPc', JSON.stringify(countProducts));
             return { pushStore }
         }
 
 
         if (name == 'phone') {
             let productsPhone = this.getProductsPhone();
-            const index = productsPhone.indexOf(id);
+            let countProducts = JSON.parse(localStorage.getItem('countPhone') || '[]');
+            let index = productsPhone.indexOf(id);
+
 
             if (index == -1) {
                 pushStorePhone = true;
 
                 const Pushid = {
-                    name: name,
                     id: id,
                     price: price,
                     count: count
@@ -110,33 +115,36 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumPhone', JSON.stringify(sumPhone));
                 }
 
-                productsPhone.push(Pushid);
+                productsPhone.push(id);
+                countProducts.push(Pushid)
                 countSum();
-            } else {
-                const removeSum = () => {
-                    sum = JSON.parse(localStorage.getItem('sumPhone') || '0');
-                    if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
-                    sum = sum - price;
-                    const sumPc = { sum: sum }
-                    localStorage.setItem('sumPhone', JSON.stringify(sumPc));
-                }
-                productsPhone.splice(index, 1);
-                removeSum();
+            } 
+            else {
+                // const removeSum = () => {
+                //     sum = JSON.parse(localStorage.getItem('sumPhone') || '0');
+                //     if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
+                //     sum = sum - price;
+                //     const sumPc = { sum: sum }
+                //     localStorage.setItem('sumPhone', JSON.stringify(sumPc));
+                // }
+                // productsPhone.splice(index, 1);
+                // removeSum();
             }
             localStorage.setItem(this.NamePhone, JSON.stringify(productsPhone));
+            localStorage.setItem('countPhone', JSON.stringify(countProducts));
             return { pushStorePhone }
         }
 
 
         if (name == 'tehnic') {
             let productsTehnic = this.getProductsTehnic();
-            const index = productsTehnic.indexOf(id);
+            let countProducts = JSON.parse(localStorage.getItem('countTehnic') || '[]');
+            let index = productsTehnic.indexOf(id);
 
             if (index == -1) {
                 pushStoreTehnic = true;
 
                 const Pushid = {
-                    name: name,
                     id: id,
                     price: price,
                     count: count
@@ -150,34 +158,38 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumTehnic', JSON.stringify(sumTehnic));
                 }
 
-                productsTehnic.push(Pushid);
+                productsTehnic.push(id);
+                countProducts.push(Pushid)
                 countSum();
 
-            } else {
-                const removeSum = () => {
-                    sum = JSON.parse(localStorage.getItem('sumTehnic') || '0');
-                    if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
-                    sum = sum - price;
-                    const sumPc = { sum: sum }
-                    localStorage.setItem('sumTehnic', JSON.stringify(sumPc));
-                }
-                productsTehnic.splice(index, 1);
-                removeSum();
+            } 
+            else {
+                // const removeSum = () => {
+                //     sum = JSON.parse(localStorage.getItem('sumTehnic') || '0');
+                //     if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
+                //     sum = sum - price;
+                //     const sumPc = { sum: sum }
+                //     localStorage.setItem('sumTehnic', JSON.stringify(sumPc));
+                // }
+                // productsTehnic.splice(index, 1);
+                // removeSum();
             }
+
             localStorage.setItem(this.NameTehnic, JSON.stringify(productsTehnic));
+            localStorage.setItem('countTehnic', JSON.stringify(countProducts));
             return { pushStoreTehnic }
         }
 
 
         if (name == 'instruments') {
             let productsInstr = this.getProductsInstr();
-            const index = productsInstr.indexOf(id);
+            let countProducts = JSON.parse(localStorage.getItem('countInstr') || '[]');
+            let index = productsInstr.indexOf(id);
 
             if (index == -1) {
                 pushStoreInstr = true;
 
                 const Pushid = {
-                    name: name,
                     id: id,
                     price: price,
                     count: count
@@ -191,24 +203,31 @@ class LocalStorageUtil_products {
                     localStorage.setItem('sumInstr', JSON.stringify(sumInstr));
                 }
 
-                productsInstr.push(Pushid);
+                productsInstr.push(id);
+                countProducts.push(Pushid);
                 countSum();
-            } else {
-                const removeSum = () => {
-                    sum = JSON.parse(localStorage.getItem('sumInstr') || '0');
-                    if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
-                    sum = sum - price;
-                    const sumPc = { sum: sum }
-                    localStorage.setItem('sumInstr', JSON.stringify(sumPc));
-                }
-                productsInstr.splice(index, 1);
-                removeSum();
+            } 
+            else {
+                // const removeSum = () => {
+                //     sum = JSON.parse(localStorage.getItem('sumInstr') || '0');
+                //     if (sum == 0) { sum = 0; } else { sum = Number(sum.sum); }
+                //     sum = sum - price;
+                //     const sumPc = { sum: sum }
+                //     localStorage.setItem('sumInstr', JSON.stringify(sumPc));
+                // }
+                // productsInstr.splice(index, 1);
+                // removeSum();
             }
+
             localStorage.setItem(this.NameInstruments, JSON.stringify(productsInstr));
+            localStorage.setItem('countInstr', JSON.stringify(countProducts));
             return { pushStoreInstr }
         }
     }
 }
+
+
+
 class LocalStorageUtil_sumCount {
     constructor() {
         this.pcSum = 'sumPc';
@@ -285,16 +304,9 @@ class LocalStorageUtil_sumCount {
 
         const pushPromo = localStorage.setItem('promo', name);
     }
-    ReloadSum(price) {
-        let sum;
-        const countSum = () => {
-            sum = JSON.parse(localStorage.getItem('sumPc') || '0');
-            if (sum != 0) { sum = Number(sum.sum); }
-            sum += price * count;
-            const sumPc = { sum: sum }
-            localStorage.setItem('sumPc', JSON.stringify(sumPc));
-        }
-    }
+
+
+
 }
 
 const LocalStorageUtilPRODUCTS = new LocalStorageUtil_products();

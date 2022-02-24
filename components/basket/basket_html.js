@@ -15,10 +15,14 @@ class Basket_catalog {
     }
 
     // Методы для удаления определеного элемента из корзины
-    Set_remove_pc(element, id, price) {
+    Set_remove_pc(i, id, price) {
         let name = 'pc';
-        const removePc = LocalStorageUtilPRODUCTS.putProducts(name, id, price, 0);
-
+        const removePc = JSON.parse(localStorage.getItem('countPc'));
+        const productsStore = LocalStorageUtilPRODUCTS.getProductsPc();
+        removePc.splice(i,1);
+        productsStore.splice(i,1);
+        localStorage.setItem('countPc',JSON.stringify(removePc));
+        localStorage.setItem('productsPc',JSON.stringify(productsStore));
         location.reload();
     }
     Set_remove_phone(element, id, price) {
@@ -49,44 +53,118 @@ class Basket_catalog {
         }
         return allSum;
     }
-    ReloadSum() {
-        const productsStore = LocalStorageUtilPRODUCTS.getProductsPc();
-        CATALOG.forEach(({ id, price }) => {
-            if (productsStore !== null) {
-                if (productsStore.indexOf(id) !== -1) {
-                    const ReloadSum = LocalStorageUtilSUM.ReloadSum(price);
-                }
-            }
-        });
-
+    deleteCount(name, i, price) {
+        const countPc = JSON.parse(localStorage.getItem('countPc'));
+        const countPhone = JSON.parse(localStorage.getItem('countPhone'));
+        const countTehnic = JSON.parse(localStorage.getItem('countTehnic'));
+        const countInstr = JSON.parse(localStorage.getItem('countInstr'));
+        const productsSum = LocalStorageUtilSUM.getSumPc();
+        const productsSum2 = LocalStorageUtilSUM.getSumPhone();
+        const productsSum3 = LocalStorageUtilSUM.getSumTehnic();
+        const productsSum4 = LocalStorageUtilSUM.getSumInstr();
+        if (name == 'pc') {
+            if (countPc[i].count == 1) {
+                alert("меньше нельзя!")
+            } else
+                countPc[i].count -= 1;
+            productsSum.sum -= price;
+            localStorage.setItem('sumPc', JSON.stringify(productsSum));
+            localStorage.setItem('countPc', JSON.stringify(countPc));
+        }
+        if (name == 'phone') {
+            countPhone[i].count -= 1;
+            productsSum2.sum -= price;
+            localStorage.setItem('sumPhone', JSON.stringify(productsSum2));
+            localStorage.setItem('countPhone', JSON.stringify(countPhone));
+        }
+        if (name == 'tehnic') {
+            countTehnic[i].count -= 1;
+            productsSum3.sum -= price;
+            localStorage.setItem('sumTehnic', JSON.stringify(productsSum3));
+            localStorage.setItem('countTehnic', JSON.stringify(countTehnic));
+        }
+        if (name == 'instr') {
+            countInstr[i].count -= 1;
+            productsSum4.sum -= price;
+            localStorage.setItem('sumInstr', JSON.stringify(productsSum4));
+            localStorage.setItem('countInstr', JSON.stringify(countInstr));
+        }
+        location.reload();
     }
-    render() {
+    plusCount(name, i, price) {
+        const countPc = JSON.parse(localStorage.getItem('countPc'));
+        const countPhone = JSON.parse(localStorage.getItem('countPhone'));
+        const countTehnic = JSON.parse(localStorage.getItem('countTehnic'));
+        const countInstr = JSON.parse(localStorage.getItem('countInstr'));
+        const productsSum = LocalStorageUtilSUM.getSumPc();
+        const productsSum2 = LocalStorageUtilSUM.getSumPhone();
+        const productsSum3 = LocalStorageUtilSUM.getSumTehnic();
+        const productsSum4 = LocalStorageUtilSUM.getSumInstr();
+        if (name == 'pc') {
+            countPc[i].count += 1;
+            productsSum.sum += price;
+            localStorage.setItem('sumPc', JSON.stringify(productsSum));
+            localStorage.setItem('countPc', JSON.stringify(countPc));
+        }
+        if (name == 'phone') {
+            countPhone[i].count += 1;
+            productsSum2.sum += price;
+            localStorage.setItem('sumPhone', JSON.stringify(productsSum2));
+            localStorage.setItem('countPhone', JSON.stringify(countPhone));
+        }
+        if (name == 'tehnic') {
+            countTehnic[i].count += 1;
+            productsSum3.sum += price;
+            localStorage.setItem('sumTehnic', JSON.stringify(productsSum3));
+            localStorage.setItem('countTehnic', JSON.stringify(countTehnic));
+        }
+        if (name == 'instr') {
+            countInstr[i].count += 1;
+            productsSum4.sum += price;
+            localStorage.setItem('sumInstr', JSON.stringify(productsSum4));
+            localStorage.setItem('countInstr', JSON.stringify(countInstr));
+        }
 
+        location.reload();
+    }
+
+
+    render() {
         // Объявление всех переменных из локального хранилища
         const activeClass_basket = ' ';
         const productsStore = LocalStorageUtilPRODUCTS.getProductsPc();
         const productsStorePhone = LocalStorageUtilPRODUCTS.getProductsPhone();
         const productsStoreTehnic = LocalStorageUtilPRODUCTS.getProductsTehnic();
         const productsStoreInstr = LocalStorageUtilPRODUCTS.getProductsInstr();
+        const countPc = JSON.parse(localStorage.getItem('countPc'));
+        const countPhone = JSON.parse(localStorage.getItem('countPhone'));
+        const countTehnic = JSON.parse(localStorage.getItem('countTehnic'));
+        const countInstr = JSON.parse(localStorage.getItem('countInstr'));
 
+        let k = 0;
         let html_catalog_basket = '';
 
         // Отрисовка элементов ,которые выбрал покупатель в корзину
-        CATALOG.forEach(({ id, img, text, price, i }) => {
-            if (productsStore.length > i) {
-                if (productsStore.length !== 0) {
-                    if (productsStore[i].id.indexOf(id) !== -1) {
-                        html_catalog_basket += `
+        CATALOG.forEach(({ id, img, text, price }) => {
+            let name = 'pc'
+            if (productsStore !== null) {
+                if (productsStore.indexOf(id) !== -1) {
+
+                    html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal">
                 <img class="basket_modal_img" src="${img}">
                 <div class="basket_modal_text">${text}</div>
                 <div class="basket_modal_pib">
                     <div class="basket_modal_price">${price.toLocaleString()} Р</div>
-                    <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_pc(this,'${id}','${price}');">Удалить</button>
+                    <div>
+                    <button class="minusBt" onclick="basketStore_page.deleteCount('pc',${k},${price})">-</button>
+                    <text id="pcCount">${countPc[k].count}<text>
+                    <button class="plusBt" onclick="basketStore_page.plusCount('pc',${k},${price})">+</button>
+                    </div>
+                    <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_pc(${k},'${id}','${price}');">Удалить</button>
             </div>
             </div>
 `;
-                    }
                 }
             }
         });
@@ -95,12 +173,23 @@ class Basket_catalog {
         CATALOG_PHONE.forEach(({ id, img, text, price }) => {
             if (productsStorePhone !== null) {
                 if (productsStorePhone.indexOf(id) !== -1) {
+                    for (let i = 0; i < countPhone.length; i++) {
+                        let count = countPhone[i].id.indexOf(id);
+                        if (count == 0) {
+                            k = i;
+                        }
+                    }
                     html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal2">
                 <img class="basket_modal_img" src="${img}">
                 <div class="basket_modal_text">${text}</div>
                 <div class="basket_modal_pib_phone">
                     <div class="basket_modal_price">${price.toLocaleString()} Р</div>
+                    <div>
+                    <button class="minusBt" onclick="basketStore_page.deleteCount('phone',${k},${price})">-</button>
+                    <text id="pcCount">${countPhone[k].count}<text>
+                    <button class="plusBt" onclick="basketStore_page.plusCount('phone',${k},${price})">+</button>
+                    </div>
                     <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_phone(this,'${id}','${price}');">Удалить</button>
             </div>
             </div>
@@ -113,12 +202,23 @@ class Basket_catalog {
         CATALOG_TEHNIC.forEach(({ id, img, text, price }) => {
             if (productsStoreTehnic !== null) {
                 if (productsStoreTehnic.indexOf(id) !== -1) {
+                    for (let i = 0; i < countTehnic.length; i++) {
+                        let count = countTehnic[i].id.indexOf(id);
+                        if (count == 0) {
+                            k = i;
+                        }
+                    }
                     html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal3">
                 <img class="basket_modal_img" src="${img}">
                 <div class="basket_modal_text">${text}</div>
                 <div class="basket_modal_pib">
                     <div class="basket_modal_price">${price.toLocaleString()} Р</div>
+                    <div>
+                    <button class="minusBt" onclick="basketStore_page.deleteCount('tehnic',${k},${price})">-</button>
+                    <text id="pcCount">${countTehnic[k].count}<text>
+                    <button class="plusBt" onclick="basketStore_page.plusCount('tehnic',${k},${price})">+</button>
+                    </div>
                     <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_tehnic(this,'${id}','${price}');">Удалить</button>
             </div>
             </div>
@@ -131,12 +231,23 @@ class Basket_catalog {
         CATALOG_INSTRUMENTS.forEach(({ id, img, text, price }) => {
             if (productsStoreInstr !== null) {
                 if (productsStoreInstr.indexOf(id) !== -1) {
+                    for (let i = 0; i < countInstr.length; i++) {
+                        let count = countInstr[i].id.indexOf(id);
+                        if (count == 0) {
+                            k = i;
+                        }
+                    }
                     html_catalog_basket += `
                 <div class="basket_modal" id="basket_modal4">
                 <img class="basket_modal_img" src="${img}">
                 <div class="basket_modal_text">${text}</div>
                 <div class="basket_modal_pib">
                     <div class="basket_modal_price">${price.toLocaleString()} Р</div>
+                    <div>
+                    <button class="minusBt" onclick="basketStore_page.deleteCount('instr',${k},${price})">-</button>
+                    <text id="pcCount">${countInstr[k].count}<text>
+                    <button class="plusBt" onclick="basketStore_page.plusCount('instr',${k},${price})">+</button>
+                    </div>
                     <button class="basket_modal_button ${activeClass_basket}" onclick="basketStore_page.Set_remove_instrum(this,'${id}','${price}');">Удалить</button>
             </div>
             </div>

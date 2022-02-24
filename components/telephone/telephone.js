@@ -5,7 +5,7 @@ class Phone {
         this.label_remove_phone = 'В корзине';
     }
 
-    Set_storage(element, id, price, count2) {
+    Set_storage(element, id, price, count2,k) {
         let name = 'phone', count, i = 1;
 
 
@@ -21,7 +21,7 @@ class Phone {
             count2 = count.value;
         }
 
-        const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2));
+        const pushProducts = LocalStorageUtilPRODUCTS.putProducts(name, id, price, Number(count2),k);
         if (pushProducts.pushStorePhone == true) {
             element.classList.add(this.classNameActive_phone);
             element.innerHTML = this.label_remove_phone;
@@ -44,7 +44,7 @@ class Phone {
         const productsStore = localStorage.getItem('productsPhone');
         let html_catalog_phone = '';
 
-        CATALOG_PHONE.forEach(({ id, img, text, price }) => {
+        CATALOG_PHONE.forEach(({ id, img, text, price,i }) => {
             let activeClass_phone = '';
             let activeText_phone = '';
 
@@ -68,7 +68,7 @@ class Phone {
             <div class="phone_modal_pib">
                 <div class="phone_modal_price">${price.toLocaleString()} Р</div>
                 <input id ="phone_modal_input"class="phone_modal_input" type="text" placeholder="1">
-                <button class="phone_modal_button ${activeClass_phone}" onclick="phone_page.Set_storage(this, '${id}','${price}',phone_modal_input);">${activeText_phone}</button>
+                <button class="phone_modal_button ${activeClass_phone}" onclick="phone_page.Set_storage(this, '${id}','${price}',phone_modal_input,${i});">${activeText_phone}</button>
         </div>
         </div>
             `;

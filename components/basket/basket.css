@@ -85,7 +85,20 @@ margin-left: 5px;
 }
 .basket_text{
 text-align: center;
-
+}
+.minusBt{
+    width: 30px;
+    height: 30px;   
+}
+.plusBt{
+    width: 30px;
+    height: 30px;
+}
+.minusBt:hover{
+    background-color: gray;
+}
+.plusBt:hover{
+    background-color: gray;
 }
 @media screen and (max-width:1024px) {
     .basket_modal {
